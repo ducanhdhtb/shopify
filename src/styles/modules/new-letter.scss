@@ -1,0 +1,36 @@
+.join h6{
+  font-size: 22px;
+  font-weight: 400;
+  color: #000;
+  float: left;
+  margin-right: 5%;
+  margin-top: 10px;
+  letter-spacing: 1px;
+  font-family: 'Lato-Regular';
+  padding: 0;
+}
+.join input[type="text"] {
+  width: 48%;
+  color: #C3C3C3;
+  letter-spacing: 1px;
+  font-weight: 300;
+  font-size: 15px;
+  padding: 10px 10px;
+  border: 1px solid #E4E4E4;
+  outline: none;
+  font-family: 'Lato-Regular';
+  text-align: left;
+}
+input[type="submit"] {
+  background: #816263;
+  color: white;
+  padding: 6px 77px 8px;
+  font-size: 19px;
+  outline: none;
+  border: none;
+  font-weight: 400;
+  margin-bottom: -3px;
+}
+.news-letter {
+  margin-top: 40px;
+}

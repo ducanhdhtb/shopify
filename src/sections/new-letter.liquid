@@ -1,0 +1,72 @@
+<div class="news-letter">
+		<div class="container">
+			<div class="join">
+				<h6 style="font-size: {{section.settings.font_size}}px;font-family: {{ section.settings.font }};color:{{ section.settings.color_primary }}">{{ section.settings.mail }}</h6>
+				<div class="sub-left-right">
+					<form action="">
+						<input type="text" placeholder="{{ section.settings.emailinput }} ">
+						<input type="submit" value="{{ section.settings.subcribe }} ">
+					</form>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+
+
+{% schema %}
+  {
+    "name": "New letter",
+    "settings": [
+      {
+        "type": "text",
+        "id": "mail",
+        "label": "JOIN OUR MAILING LIST",
+        "default": "JOIN OUR MAILING LIST"
+      },
+      {
+	    "type":      "range",
+	    "id":        "font_size",
+	    "min":       12,
+	    "max":        30,
+	    "step":       1,
+	    "unit":       "px",
+	    "label":     "Font size",
+	    "default":   16
+	  },
+      {
+        "type": "text",
+        "id": "emailinput",
+        "label": "Enter your email here",
+        "default": "Enter your email here"
+      },
+       {
+        "type": "text",
+        "id": "subcribe",
+        "label": "SUBCRIBE",
+        "default": "SUBCRIBE"
+      },
+      {
+            "type":    "font_picker",
+		   "label":   "Text",
+		   "id":      "font",
+		   "info":    "Text",
+		   "default": "helvetica_n4"
+       },
+        {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Primary color",
+        "default": "#000",
+        "info": "Used for text links, and primary buttons"
+      },
+      
+    ],
+    "presets": [
+	{
+		"name": "New letter",
+		"category": "Homepage"
+	}
+	]
+  }
+{% endschema %}

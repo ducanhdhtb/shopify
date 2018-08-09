@@ -1,0 +1,100 @@
+<style>
+{% if section.settings.logo != blank %}
+.site-header__logo-image {
+  max-width: {{ section.settings.logo_max_width }}px;
+}
+{% endif %}
+</style>
+<div class="header">
+  <div class="header-top-strip">
+    <div class="container clearfix">
+      <div class="header-top-left">
+        <ul>
+          <li><a href=""><span class="glyphicon glyphicon-user"></span>Login</a></li>
+          <li><a href=""><span class="glyphicon glyphicon-lock"></span>Create an account</a></li> 
+        </ul>
+      </div>
+      <div class="header-right">
+        <div class="cart box_1">
+          <a href="checkout.html">
+            <h3>
+              <span class="simpleCart_total">$0.00</span>
+              (<span id="simpleCart_quantity" class="simpleCart_quantity"> 0 </span>)
+              {{ 'bag.png' | asset_url | img_tag }}
+            </h3>
+          </a>
+          <p>
+            <a href="javascript:;" class="simpleCart_empty">Empty cart</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- banner-top -->
+<div class="banner-top">
+  <div class="container">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="logo">
+            <h1>
+              <a href="index.html">{{ section.settings.title }}</a>
+            </h1>
+          </div>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            {% for link in linklists.main-menu.links %}            
+            <li class="dropdown">
+              <a href="{{ link.url }}"  class="dropdown-toggle" data-toggle="dropdown" >{{ link.title }}<b class="caret"></b></a>
+              {% assign submenu = link.title | handleize %}   
+              <ul class="dropdown-menu multi-column columns-3">
+                <div class="row">
+                  {% for childlink in linklists[submenu].links %}
+                  <div class="col-sm-4">
+                    <ul class="multi-column-dropdown">                     
+                      <h6><a href="{{ childlink.url }}">{{ childlink.title }}</a></h6>
+                      {% assign submenu2 = childlink.title | handleize %}
+                      {% for childlink2 in linklists[submenu2].links %}
+                         <li><a href="{{ childlink2.url }}"  class="dropdown-toggle" data-toggle="dropdown" >{{ childlink2.title }}</a></li>
+                      {% endfor%}
+        
+                   </ul>
+                  </div>
+                 {% endfor %}
+
+                 <div class="clearfix"></div>
+               </div>
+             </ul>
+           </li>
+           {% endfor %}
+         </ul>
+       </div>
+     </div>
+   </nav>
+ </div>
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+  {
+    "type": "text",
+    "id": "title",
+    "label": "Heading",
+    "default": "eshop"
+  }
+  ]
+}
+{% endschema %}

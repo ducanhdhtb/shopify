@@ -1,0 +1,26 @@
+<div class="temporary">
+    <div class="container">
+    {{ section.settings.logo | img_url: 'master' | img_tag: '' }}
+		</div>
+</div>
+
+
+ {% schema %}
+  {
+    "name": "Banner",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Banner",
+        "category": "Banner"
+      }
+    ]
+  }
+
+{% endschema %}

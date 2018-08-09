@@ -1,0 +1,39 @@
+/* Css for grid product */
+h3.head.text-center {
+  font-size: 35px;
+  color: #816263;
+  font-weight: 500;
+  padding: 0;
+}
+.product {
+  position: relative;
+  margin-top: 50px;
+}
+.products-grid a {
+  display: block;
+  color: #000;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-decoration: none;
+}
+.mask {
+  display: none;
+  position: absolute;
+  top: 44%;
+  left: 33%;
+}
+.product p {
+  color: #999;
+  font-family: 'Lato-Regular';
+  font-weight: 700;
+  display: inline-block;
+  vertical-align: middle;
+}
+.product img {
+  width: 100%;
+}
+a.product_name {
+  margin: 15px 0;
+}
+/* End Css for grid product */
