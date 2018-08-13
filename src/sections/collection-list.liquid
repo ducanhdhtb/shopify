@@ -6,11 +6,15 @@
   <div {{ block.shopify_attributes }}>
     {%- assign collection = collections[block.settings.collection] -%}
 
+    <!-- if collection is empty is a href = "#" else collection.url -->
     <a href="{% if collection == empty %}#{% else %}{{ collection.url }}{% endif %}">
+      <!-- if collection image is not empty is getting img -->
       {% if collection.image != blank %}
         {{ collection | img_url: '480x480' | img_tag: collection.title }}
+        <!-- else if the first product in collection is isset get img of this product -->
       {% elsif collection.products.first != blank %}
         {{ collection.products.first | img_url: '480x480' | img_tag: collection.title }}
+        <!-- else if collection is empty is capture below -->
       {% elsif collection == empty %}
         {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
         {{ 'collection-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}

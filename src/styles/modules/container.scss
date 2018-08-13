@@ -36,4 +36,19 @@ h3.head.text-center {
 a.product_name {
   margin: 15px 0;
 }
+.product p {
+    color: #999;
+    font-family: 'Lato-Regular';
+    font-weight: 700;
+    display: inline-block;
+    vertical-align: middle;
+}
+.product p i {
+    background: url(cart.png) no-repeat;
+    width: 20px;
+    height: 14px;
+    display: inline-block;
+    margin-right: 4px;
+    vertical-align: middle;
+}
 /* End Css for grid product */

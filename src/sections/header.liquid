@@ -18,8 +18,11 @@
         <div class="cart box_1">
           <a href="checkout.html">
             <h3>
-              <span class="simpleCart_total">$0.00</span>
-              (<span id="simpleCart_quantity" class="simpleCart_quantity"> 0 </span>)
+              <span class="simpleCart_total">${{ cart.total_price }}</span>
+              <!-- demo -->
+              
+                (<span id="CartCount" class="simpleCart_quantity"> {{ cart.item_count }} </span>)
+              <!--End  demo -->
               {{ 'bag.png' | asset_url | img_tag }}
             </h3>
           </a>
@@ -56,8 +59,9 @@
           <ul class="nav navbar-nav">
             {% for link in linklists.main-menu.links %}            
             <li class="dropdown">
-              <a href="{{ link.url }}"  class="dropdown-toggle" data-toggle="dropdown" >{{ link.title }}<b class="caret"></b></a>
+              <a href="{{ link.url }}"  class="dropdown-toggle" data-toggle="dropdown" >{{ link.title }} {% if link.levels > 0 %}<b class="caret">{% endif %}</b></a>
               {% assign submenu = link.title | handleize %}   
+              {% if link.levels > 0 %}
               <ul class="dropdown-menu multi-column columns-3">
                 <div class="row">
                   {% for childlink in linklists[submenu].links %}
@@ -76,6 +80,7 @@
                  <div class="clearfix"></div>
                </div>
              </ul>
+             {% endif %}
            </li>
            {% endfor %}
          </ul>

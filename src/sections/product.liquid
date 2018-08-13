@@ -1,133 +1,295 @@
-<div data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true" itemscope itemtype="http://schema.org/Product">
-
-  {%- assign current_variant = product.selected_or_first_available_variant -%}
-  {%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
-
-  <meta itemprop="name" content="{{ product.title }}{% unless product.has_only_default_variant %} - {{ current_variant.title }}{% endunless %}">
-  <meta itemprop="url" content="{{ shop.url }}{{ current_variant.url }}">
-  <meta itemprop="brand" content="{{ product.vendor }}">
-  <meta itemprop="image" content="{{ featured_image | img_url: '600x600' }}">
-  <meta itemprop="description" content="{{ product.description | strip_html | escape }}">
-
-  {% if featured_image != blank %}
-    <img src="{{ featured_image | img_url: '480x480' }}" alt="{{ featured_image.alt | escape }}" data-product-featured-image>
-  {% endif %}
-
-  {% if product.images.size > 1 %}
-    <ul>
-      {% for image in product.images %}
-        <li>
-          <a href="{{ image.src | img_url: '480x480' }}" data-product-single-thumbnail>
-            <img src="{{ image.src | img_url: '160x160' }}" alt="{{ image.alt | escape }}">
-          </a>
-        </li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-
-  <h1>{{ product.title }}</h1>
-  <p>{{ product.vendor }}</p>
-
-  <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-    <meta itemprop="priceCurrency" content="{{ shop.currency }}">
-    <meta itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
-    <link itemprop="availability" href="http://schema.org/{% if current_variant.available %}InStock{% else %}OutOfStock{% endif %}">
-
-    <form action="/cart/add" method="post" enctype="multipart/form-data">
-      {% unless product.has_only_default_variant %}
-        {% for option in product.options_with_values %}
-          <div class="selector-wrapper js">
-            <label for="SingleOptionSelector-{{ forloop.index0 }}">
-              {{ option.name }}
-            </label>
-
-            <select
-              id="SingleOptionSelector-{{ forloop.index0 }}"
-              data-single-option-selector
-              data-index="option{{ option.position }}">
-              {% for value in option.values %}
-                <option
-                  value="{{ value | escape }}"
-                  {% if option.selected_value == value %}selected="selected"{% endif %}>
-                    {{ value }}
-                </option>
-              {% endfor %}
-            </select>
-          </div>
+<!-- Product page -->
+<div class="container">
+ <div class="products-page">
+  <div class="products">
+    <div class="product-listy">
+      <h2>our Products</h2>
+      <ul class="product-list">
+         {%- assign sidebar-menu = section.settings.sidebar_linklist -%}
+        {% for link in linklists[sidebar-menu].links %}
+        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
         {% endfor %}
-      {% endunless %}
-
-      <select name="id" class="no-js" data-product-select>
-        {% for variant in product.variants %}
-          <option
-            {% if variant == current_variant %}selected="selected"{% endif %}
-            {% unless variant.available %}disabled="disabled"{% endunless %}
-            value="{{ variant.id }}">
-              {{ variant.title }}
-          </option>
-        {% endfor %}
-      </select>
-
-      <label for="Quantity">{{ 'products.product.quantity' | t }}</label>
-      <input type="number" id="Quantity" name="quantity" value="1" min="1">
-
-      <div data-price-wrapper>
-        <span data-product-price>
-          {{ current_variant.price | money }}
-        </span>
-
-        {% if product.compare_at_price_max > product.price %}
-          <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
-          <s data-compare-price>
-            {% if current_variant.compare_at_price > current_variant.price %}
-              {{ current_variant.compare_at_price | money }}
-            {% endif %}
-          </s>
-        {% endif %}
+      </ul>
+    </div>
+    <div class="latest-bis">
+      {{ "l4.jpg" | asset_url | img_tag: "image"  }}
+      <div class="offer">
+        <p>40%</p>
+        <small>Top Offer</small>
       </div>
-
-      <button
-        type="submit"
-        name="add"
-        data-add-to-cart
-        {% unless current_variant.available %}disabled="disabled"{% endunless %}>
-          <span data-add-to-cart-text>
-            {% if current_variant.available %}
-              {{ 'products.product.add_to_cart' | t }}
-            {% else %}
-              {{ 'products.product.sold_out' | t }}
-            {% endif %}
-          </span>
-      </button>
-    </form>
+    </div>  
+    <div class="tags">
+      <h4 class="tag_head">Tags Widget</h4>  
+      <ul class="tags_links">
+        {% for tag1 in product.tags %}
+        <li><a href="#"> {{ tag1 }}</a></li>
+        {% endfor %}
+      </ul>         
+    </div>
 
   </div>
+  <div class="new-product">
+    <div class="col-md-5 zoom-grid">
+      <div class="flexslider">
 
-  <div class="rte">
-    {{ product.description }}
+        <div class="flex-viewport" style="overflow: hidden; position: relative;"><ul class="slides" style="width: 1000%; transition-duration: 0s; transform: translate3d(-339px, 0px, 0px);"><li data-thumb="images/si2.jpg" class="clone" style="float: left; display: block; width: 339px;">
+          <div class="thumb-image"> <img src="si2.jpg" data-imagezoom="true" class="img-responsive" alt=""> </div>
+        </li>
+        <li data-thumb="images/si.jpg" style="float: left; display: block; width: 339px;" class="flex-active-slide">
+          <div class="thumb-image"> <img src="si.jpg" data-imagezoom="true" class="img-responsive" alt=""> </div>
+        </li>
+        <li data-thumb="images/si1.jpg" style="float: left; display: block; width: 339px;" class="">
+          <div class="thumb-image"> <img src="si1.jpg" data-imagezoom="true" class="img-responsive" alt=""> </div>
+        </li>
+        <li data-thumb="images/si2.jpg" style="float: left; display: block; width: 339px;" class="">
+          <div class="thumb-image"> <img src="si2.jpg" data-imagezoom="true" class="img-responsive" alt=""> </div>
+        </li> 
+        <li data-thumb="images/si.jpg" style="float: left; display: block; width: 339px;" class="clone">
+          <div class="thumb-image"> <img src="si.jpg" data-imagezoom="true" class="img-responsive" alt=""> </div>
+        </li></ul></div><ol class="flex-control-nav flex-control-thumbs"><li><img src="images/si.jpg" class="flex-active"></li><li><img src="si1.jpg" class=""></li><li><img src="si2.jpg" class=""></li></ol><ul class="flex-direction-nav"><li><a class="flex-prev" href="#">Previous</a></li><li><a class="flex-next" href="#">Next</a></li></ul></div>
+      </div>
+      <div class="col-md-7 dress-info">
+        <div class="dress-name">
+          <h3>{{ product.title }}</h3>
+          <span>${{ product.price }}</span>
+          <div class="clearfix"></div>
+          <p>{{ product.description | strip_html }}</p>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
+        </div>
+        <div class="span span1">
+
+          <p class="left">Collection</p>
+          <p class="right"></p>
+          <div class="clearfix"></div>
+        </div>
+        <div class="span span2">
+          <p class="left">MADE IN</p>
+          <p class="right">China </p>
+          <div class="clearfix"></div>
+        </div>
+        {% for product_option in product.options_with_values %}
+        <div class="span span4">
+          <p class="left"> {{ product_option.name }}</p>
+          <p class="right">
+            <span class="selection-box">
+              <select class="domains valid" name="domains">
+                {% for value in product_option.values %}
+                <option {% if product_option.selected_value == value %}selected{% endif %}>
+                  {{ value }}
+                </option>
+                {% endfor %}
+              </select>
+            </span>
+          </p>
+          <div class="clearfix"></div>
+        </div>
+        {% endfor %}
+        <div class="purchase">
+          <a href="#">Purchase Now</a>
+          <div class="social-icons">
+            <ul>
+              <li><a class="facebook1" href="#"></a></li>
+              <li><a class="twitter1" href="#"></a></li>
+              <li><a class="googleplus1" href="#"></a></li>
+            </ul>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+
+      </div>
+      <div class="clearfix"></div>
+      <div class="reviews-tabs">
+        <!-- Main component for a primary marketing message or call to action -->
+        <ul class="nav nav-tabs responsive hidden-xs hidden-sm" id="myTab">
+          <li class="test-class active"><a class="deco-none misc-class" href="#how-to"> More Information</a></li>
+          <li class="test-class"><a href="#features">Specifications</a></li>
+          <li class="test-class"><a class="deco-none" href="#source">Reviews (7)</a></li>
+        </ul>
+
+        <div class="tab-content responsive hidden-xs hidden-sm">
+          <div class="tab-pane active" id="how-to">
+           <p class="tab-text">Maecenas mauris velit, consequat sit amet feugiat rit, elit vitaeert scelerisque elementum, turpis nisl accumsan ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry. and scrambled it to make a type specimen book. It has survived Auction your website on Flippa and you'll get the best price from serious buyers, dedicated support and a much better deal than you'll find with any website broker. Sell your site today I need a twitter bootstrap 3.0 theme for the full-calendar plugin. it would be great if the theme includes the add event; remove event, show event details. this must be RESPONSIVE and works on mobile devices. Also, I've seen so many bootstrap themes that comes up with the fullcalendar plugin. However these . </p>    
+         </div>
+         <div class="tab-pane" id="features">
+          <p class="tab-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nibh urna, euismod ut ornare non, volutpat vel tortor. Integer laoreet placerat suscipit. Sed sodales scelerisque commodo. Nam porta cursus lectus. Proin nunc erat, gravida a facilisis quis, ornare id lectus. Proin consectetur nibh quis urna gravida mollis.This tab has icon in consectetur adipiscing eliconse consectetur adipiscing elit. Vestibulum nibh urna, ctetur adipiscing elit. Vestibulum nibh urna, t.consectetur adipiscing elit. Vestibulum nibh urna,  Vestibulum nibh urna,it.</p>
+          <p class="tab-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, 
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <div class="tab-pane" id="source">
+          <div class="response">
+            <div class="media response-info">
+              <div class="media-left response-text-left">
+                <a href="#">
+                  <img class="media-object" src="images/icon1.png" alt="">
+                </a>
+                <h5><a href="#">Username</a></h5>
+              </div>
+              <div class="media-body response-text-right">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, 
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <ul>
+                  <li>MARCH 21, 2015</li>
+                  <li><a href="single.html">Reply</a></li>
+                </ul>
+              </div>
+              <div class="clearfix"> </div>
+            </div>
+            <div class="media response-info">
+              <div class="media-left response-text-left">
+                <a href="#">
+                  <img class="media-object" src="images/icon1.png" alt="">
+                </a>
+                <h5><a href="#">Username</a></h5>
+              </div>
+              <div class="media-body response-text-right">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, 
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <ul>
+                  <li>MARCH 26, 2054</li>
+                  <li><a href="single.html">Reply</a></li>
+                </ul>   
+              </div>
+              <div class="clearfix"> </div>
+            </div>
+            <div class="media response-info">
+              <div class="media-left response-text-left">
+                <a href="#">
+                  <img class="media-object" src="images/icon1.png" alt="">
+                </a>
+                <h5><a href="#">Username</a></h5>
+              </div>
+              <div class="media-body response-text-right">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, 
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <ul>
+                  <li>MAY 25, 2015</li>
+                  <li><a href="single.html">Reply</a></li>
+                </ul>   
+              </div>
+              <div class="clearfix"> </div>
+            </div>
+            <div class="media response-info">
+              <div class="media-left response-text-left">
+                <a href="#">
+                  <img class="media-object" src="images/icon1.png" alt="">
+                </a>
+                <h5><a href="#">Username</a></h5>
+              </div>
+              <div class="media-body response-text-right">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, 
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <ul>
+                  <li>FEB 13, 2015</li>
+                  <li><a href="single.html">Reply</a></li>
+                </ul>   
+              </div>
+              <div class="clearfix"> </div>
+            </div>
+            <div class="media response-info">
+              <div class="media-left response-text-left">
+                <a href="#">
+                  <img class="media-object" src="images/icon1.png" alt="">
+                </a>
+                <h5><a href="#">Username</a></h5>
+              </div>
+              <div class="media-body response-text-right">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, 
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <ul>
+                  <li>JAN 28, 2015</li>
+                  <li><a href="single.html">Reply</a></li>
+                </ul>   
+              </div>
+              <div class="clearfix"> </div>
+            </div>
+            <div class="media response-info">
+              <div class="media-left response-text-left">
+                <a href="#">
+                  <img class="media-object" src="images/icon1.png" alt="">
+                </a>
+                <h5><a href="#">Username</a></h5>
+              </div>
+              <div class="media-body response-text-right">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, 
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <ul>
+                  <li>APR 18, 2015</li>
+                  <li><a href="single.html">Reply</a></li>
+                </ul>   
+              </div>
+              <div class="clearfix"> </div>
+            </div>
+            <div class="media response-info">
+              <div class="media-left response-text-left">
+                <a href="#">
+                  <img class="media-object" src="images/icon1.png" alt="">
+                </a>
+                <h5><a href="#">Username</a></h5>
+              </div>
+              <div class="media-body response-text-right">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, 
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <ul>
+                  <li>DEC 25, 2014</li>
+                  <li><a href="single.html">Reply</a></li>
+                </ul>   
+              </div>
+              <div class="clearfix"> </div>
+            </div>
+          </div>
+        </div>
+      </div><div class="panel-group responsive visible-xs visible-sm" id="collapse-myTab"><div class="panel panel-default test-class"><div class="panel-heading"><h4 class="panel-title"><a class="accordion-toggle deco-none misc-class" data-toggle="collapse" data-parent="#collapse-myTab" href="#collapse-how-to"> More Information</a></h4></div><div id="collapse-how-to" class="panel-collapse collapse in" style="height: auto;"></div></div><div class="panel panel-default test-class"><div class="panel-heading"><h4 class="panel-title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#collapse-myTab" href="#collapse-features">Specifications</a></h4></div><div id="collapse-features" class="panel-collapse collapse"></div></div><div class="panel panel-default test-class"><div class="panel-heading"><h4 class="panel-title"><a class="accordion-toggle deco-none" data-toggle="collapse" data-parent="#collapse-myTab" href="#collapse-source">Reviews (7)</a></h4></div><div id="collapse-source" class="panel-collapse collapse"></div></div></div>   
+    </div>
+    
+
   </div>
-
-  {% if section.settings.show_share_buttons %}
-    {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
-  {% endif %}
-
-  {% unless product == empty %}
-    <script type="application/json" data-product-json>
-      {{ product | json }}
-    </script>
-  {% endunless %}
+  <div class="clearfix"></div>
 </div>
-
+</div>
+<!-- Other product -->
+<div class="other-products products-grid">
+  <div class="container">
+    <header>
+      <h3 class="like text-center">Related Products</h3>   
+    </header>     
+    <div class="col-md-4 product simpleCart_shelfItem text-center">
+      <a href="single.html">{{ "p1.jpg" | asset_url | img_tag: "Main Logo" }}</a>
+      <div class="mask">
+        <a href="single.html">Quick View</a>
+      </div>
+      <a class="product_name" href="single.html">Sed ut perspiciatis</a>
+      <p><a class="item_add" href="#"><i></i> <span class="item_price">$329</span></a></p>
+    </div>
+    <div class="col-md-4 product simpleCart_shelfItem text-center">
+      <a href="single.html">{{ "p2.jpg" | asset_url | img_tag: "Main Logo" }}</a>
+      <div class="mask">
+        <a href="single.html">Quick View</a>
+      </div>
+      <a class="product_name" href="single.html">great explorer</a>
+      <p><a class="item_add" href="#"><i></i> <span class="item_price">$599.8</span></a></p>
+    </div>
+    <div class="col-md-4 product simpleCart_shelfItem text-center">
+      <a href="single.html">{{ "p3.jpg" | asset_url | img_tag: "Main Logo" }}</a>
+      <div class="mask">
+        <a href="single.html">Quick View</a>
+      </div>
+      <a class="product_name" href="single.html">similique sunt</a>
+      <p><a class="item_add" href="#"><i></i> <span class="item_price">$359.6</span></a></p>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <!-- End Other product -->
+</div>
 {% schema %}
   {
-    "name": "Product pages",
+    "name": "Sidebar",
     "settings": [
       {
-        "type": "checkbox",
-        "id": "show_share_buttons",
-        "label": "Show social sharing buttons",
-        "default": true
+        "type": "link_list",
+        "id": "sidebar_linklist",
+        "label": "Sidebar menu"
       }
     ]
   }
+
 {% endschema %}

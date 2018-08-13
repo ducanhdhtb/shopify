@@ -61,6 +61,21 @@ label{
     margin:0;
 }
 /*-----start-header----*/
+ul.multi-column-dropdown h6 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #816263;
+    padding: 0;
+}
+.multi-column-dropdown li a {
+    display: block;
+    clear: both;
+    line-height: 1.428571429;
+    color: #000;
+    white-space: normal;
+    font-weight: 300;
+}
     /* header-left */
 .header-top-left ul li a {
     color: white;
@@ -213,5 +228,16 @@ a.facebook {
     padding-bottom: 15px;
     text-transform: uppercase;
     font-size: 13px;
+}
+.multi-column-dropdown li a {
+    display: block;
+    clear: both;
+    line-height: 1.428571429;
+    color: #777;
+    white-space: normal;
+    font-weight: 300;
+    font-size: 13px;
+    /* border: 1px solid black; */
+    padding: 1px;
 }
 /*  End content-section-starts-here */

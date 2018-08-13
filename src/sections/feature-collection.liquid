@@ -1,0 +1,46 @@
+<div class="container">
+		<div class="products-grid">
+			<header>
+				<h3 class="head text-center">{{ section.settings.title }}</h3>
+			</header>
+			<!-- My difined -->
+			{%- assign collection = collections[section.settings.collection] -%}
+
+			{% for product in collection.products limit: section.settings.number_of_products %}
+			<div class="col-md-4 product simpleCart_shelfItem text-center">
+				<a href="{{ product.url | within: collection }}">{{ product.featured_image.src | img_url: '350x350', crop: 'center' | img_tag: product.title }}</a>
+				<a href="#" class="product_name"  >{{ product.title }}</a>
+				<p>
+						<a class="item_add" href="#"><i></i> <span class="item_price">${{ product.price }}</span></a>
+				</p>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+<span>11/span>
+
+{% schema %}
+  {
+    "name": My feature",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "My feature"
+      },
+      {
+        "id": "collection",
+        "type": "collection",
+        "label": "Collection"
+      }
+    ],
+    "presets": [
+      {
+        "name": "My feature",
+        "category": "Collection"
+      }
+    ]
+  }
+
+{% endschema %}

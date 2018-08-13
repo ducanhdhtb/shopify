@@ -2,78 +2,39 @@
 		<div class="container">
 			<div class="footer-top">
 				<div class="span_of_4">
+					 {%- assign footer_linklist = section.settings.footer_linklist -%}
+					{% for link in linklists[footer_linklist].links %}  
+					{% if link.levels > 0 %}
 					<div class="col-md-3 span1_of_4">
-						<h4>Shop</h4>
+						<h4> <a href="{{ link.url }}" >{{ link.title }} </a></h4>
 						<ul class="f_nav">
-							<li><a href="#">new arrivals</a></li>
-							<li><a href="#">men</a></li>
-							<li><a href="#">women</a></li>
-							<li><a href="#">accessories</a></li>
-							<li><a href="#">kids</a></li>
-							<li><a href="#">brands</a></li>
-							<li><a href="#">trends</a></li>
-							<li><a href="#">sale</a></li>
-							<li><a href="#">style videos</a></li>
+							 {% assign submenu = link.title | handleize %} 
+							 {% for childlink in linklists[submenu].links %} 
+							<li><a href="#">{{ childlink.title }}</a></li>
+							{% endfor %}
 						</ul>
-					</div>
-					<div class="col-md-3 span1_of_4">
-						<h4>Shop</h4>
-						<ul class="f_nav">
-							<li><a href="#">new arrivals</a></li>
-							<li><a href="#">men</a></li>
-							<li><a href="#">women</a></li>
-							<li><a href="#">accessories</a></li>
-							<li><a href="#">kids</a></li>
-							<li><a href="#">brands</a></li>
-							<li><a href="#">trends</a></li>
-							<li><a href="#">sale</a></li>
-							<li><a href="#">style videos</a></li>
-						</ul>
-
-					</div>
-					<div class="col-md-3 span1_of_4">
-						<h4>Shop</h4>
-						<ul class="f_nav">
-							<li><a href="#">new arrivals</a></li>
-							<li><a href="#">men</a></li>
-							<li><a href="#">women</a></li>
-							<li><a href="#">accessories</a></li>
-							<li><a href="#">kids</a></li>
-							<li><a href="#">brands</a></li>
-							<li><a href="#">trends</a></li>
-							<li><a href="#">sale</a></li>
-							<li><a href="#">style videos</a></li>
-						</ul>
-					</div>
-					<div class="col-md-3 span1_of_4">
-						<h4>Shop</h4>
-						<ul class="f_nav">
-							<li><a href="#">new arrivals</a></li>
-							<li><a href="#">men</a></li>
-							<li><a href="#">women</a></li>
-							<li><a href="#">accessories</a></li>
-							<li><a href="#">kids</a></li>
-							<li><a href="#">brands</a></li>
-							<li><a href="#">trends</a></li>
-							<li><a href="#">sale</a></li>
-							<li><a href="#">style videos</a></li>
-						</ul>
-					</div>
+					</div>	
+					{% endif %}
+					{% endfor %}			
 					<div class="clearfix"></div>
 				</div>
 			</div>
 		</div>
-	</div>
+		<div class="cards text-center">
+			<img src="cards.jpg" alt="">
+		</div>
+</div>
 {% schema %}
   {
-    "name": "My footer",
+    "name": "Footer",
     "settings": [
       {
-        "type": "text",
-        "id": "title",
-        "label": "Heading",
-        "default": "eshop"
+        "type": "link_list",
+        "id": "footer_linklist",
+        "label": "First menu",
+        "default": "footer"
       }
     ]
   }
+
 {% endschema %}
