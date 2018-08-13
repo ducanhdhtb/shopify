@@ -1,0 +1,70 @@
+.cart h1{
+	text-align:center;
+	font-size: 2.1875em;
+    text-transform: none;
+    letter-spacing: 0;
+    color:black;
+    margin-bottom:20px;
+}
+.table-custom{
+	width: 100%;
+}
+.head-table{
+
+}
+.table-custom img {
+    width: 95px;
+    height: 118px;
+}
+.table-custom thead{
+	border-bottom:1px solid #e8e9eb;
+}
+th {
+    font-family: "Work Sans",sans-serif;
+    font-style: normal;
+    font-weight: 700;
+}
+.table-custom td {
+    padding: 22px 0px;
+    border-bottom: 1px solid #e8e9eb;
+    font-size: 18px;
+}
+.table-custom th {
+    font-weight: 400;
+    padding: 27.5px 0;
+    font-size: 17px;
+    font-weight: 400;
+}
+.table-custom td input {
+    width: 100%;
+    text-align: center;
+    width: 60px;
+    padding: 10px;
+    border:1px solid grey;
+}
+.update{
+
+}
+.checkout{
+	background: #816263;
+    color: white;
+    padding: 6px 77px 8px;
+    font-size: 19px;
+    outline: none;
+    border: none;
+    font-weight: 400;
+    margin-bottom: -3px;
+}
+.right{
+	float:right;
+}
+input[type="submit"] {
+    background: #816263;
+    color: white;
+    padding: 9px 18px 10px;
+    font-size: 15px;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    margin-bottom: -3px;
+}

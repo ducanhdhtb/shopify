@@ -1,5 +1,5 @@
 <!-- Product page -->
-<div class="container">
+<div class="container" data-section-type="product">
  <div class="products-page">
   <div class="products">
     <div class="product-listy">
@@ -67,6 +67,7 @@
           <p class="right">China </p>
           <div class="clearfix"></div>
         </div>
+         {% form 'product', product, class:form_classes, novalidate: 'novalidate' %}
         {% for product_option in product.options_with_values %}
         <div class="span span4">
           <p class="left"> {{ product_option.name }}</p>
@@ -84,17 +85,35 @@
           <div class="clearfix"></div>
         </div>
         {% endfor %}
+
+        <select name="id" id="ProductSelect-{{ section.id }}" class="product-form__variants no-js">
+          {% for variant in product.variants %}
+            {% if variant.available %}
+              <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
+                {{ variant.title }}
+              </option>
+            {% else %}
+              <option disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
         <div class="purchase">
-          <a href="#">Purchase Now</a>
+          <!-- <a href="#">Purchase Now</a>
           <div class="social-icons">
             <ul>
               <li><a class="facebook1" href="#"></a></li>
               <li><a class="twitter1" href="#"></a></li>
               <li><a class="googleplus1" href="#"></a></li>
             </ul>
-          </div>
+          </div> -->
+          <button type="submit" name="add" id="AddToCart-{{ section.id }}" class="btn product-form__cart-submit">
+                <span id="AddToCartText-{{ section.id }}">
+                    {{ 'products.product.add_to_cart' | t }}
+                </span>
+              </button>
           <div class="clearfix"></div>
         </div>
+        {% endform %}
 
       </div>
       <div class="clearfix"></div>
