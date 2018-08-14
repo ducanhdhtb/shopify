@@ -289,3 +289,15 @@ p.right {
 .hidden {
    display: none;
 }
+.new-product img {
+    display: inline-block;
+    width: auto !important;
+    border: none;
+    height: auto !important;
+}
+.my-column img {
+    display: inline-block;
+    width: 100%;
+    border: none;
+    height: 307px !important;
+}

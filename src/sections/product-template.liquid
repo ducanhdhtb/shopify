@@ -32,21 +32,21 @@
     <div class="col-md-5 zoom-grid">
       <div class="flexslider">
 
-        <div class="flex-viewport" style="overflow: hidden; position: relative;"><ul class="slides" style="width: 1000%; transition-duration: 0s; transform: translate3d(-339px, 0px, 0px);"><li data-thumb="images/si2.jpg" class="clone" style="float: left; display: block; width: 339px;">
-          <div class="thumb-image"> <img src="si2.jpg" data-imagezoom="true" class="img-responsive" alt=""> </div>
-        </li>
-        <li data-thumb="images/si.jpg" style="float: left; display: block; width: 339px;" class="flex-active-slide">
-          <div class="thumb-image"> <img src="si.jpg" data-imagezoom="true" class="img-responsive" alt=""> </div>
-        </li>
-        <li data-thumb="images/si1.jpg" style="float: left; display: block; width: 339px;" class="">
-          <div class="thumb-image"> <img src="si1.jpg" data-imagezoom="true" class="img-responsive" alt=""> </div>
-        </li>
-        <li data-thumb="images/si2.jpg" style="float: left; display: block; width: 339px;" class="">
-          <div class="thumb-image"> <img src="si2.jpg" data-imagezoom="true" class="img-responsive" alt=""> </div>
-        </li> 
-        <li data-thumb="images/si.jpg" style="float: left; display: block; width: 339px;" class="clone">
-          <div class="thumb-image"> <img src="si.jpg" data-imagezoom="true" class="img-responsive" alt=""> </div>
-        </li></ul></div><ol class="flex-control-nav flex-control-thumbs"><li><img src="images/si.jpg" class="flex-active"></li><li><img src="si1.jpg" class=""></li><li><img src="si2.jpg" class=""></li></ol><ul class="flex-direction-nav"><li><a class="flex-prev" href="#">Previous</a></li><li><a class="flex-next" href="#">Next</a></li></ul></div>
+        <div class="flex-viewport" style="overflow: hidden; position: relative;">
+        <ul class="slides" style="width: 1000%; transition-duration: 0s; transform: translate3d(-339px, 0px, 0px);">
+           {% for image in product.images %}
+            <li data-thumb="{{ image.src | img_url: '200x200', crop: 'center' }}" class="clone" style="float: left; display: block; width: 339px;">
+              <div class="thumb-image"> <img id="img_0{{ forloop.index }}" data-imagezoom="true" class="img-responsive" alt="" src="{{ image.src | img_url: '200x200', crop: 'center' }}" /> </div>
+            </li>
+            {% endfor %} 
+        </ul>
+      </div>
+      <ol class="flex-control-nav flex-control-thumbs">
+          {% for image in product.images %}
+        <li><img id="img_0{{ forloop.index }}" data-imagezoom="true" class="img-responsive" alt="" src="{{ image.src | img_url: '200x200', crop: 'center' }}" /></li>
+        {% endfor%}
+      </ol>
+      <ul class="flex-direction-nav"><li><a class="flex-prev" href="#">Previous</a></li><li><a class="flex-next" href="#">Next</a></li></ul></div>
       </div>
       <div class="col-md-7 dress-info">
         <div class="dress-name">

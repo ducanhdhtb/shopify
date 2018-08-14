@@ -142,3 +142,14 @@ ul.women_pagenation li a:hover {
     padding-top: 3px;
     padding-bottom: 3px;
 }
+@media screen and (max-width: 600px) {
+  .products{
+  	width:100%;
+  }
+  .new-product-top {
+    display: none;
+  }
+  .my-column {
+  	width:100%;
+  }
+}
