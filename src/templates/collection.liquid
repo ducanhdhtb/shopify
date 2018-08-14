@@ -1,98 +1,200 @@
-{% paginate collection.products by 12 %}
-  <header role="banner">
-    <h1>{{ collection.title }}</h1>
-    {% if collection.description != blank %}
-      <div class="rte">
-        {{ collection.description }}
-      </div>
-    {% endif %}
 
-    {% if collection.all_tags.size > 0 %}
+<div class="container">
+  <div class="product-page">
+    <div class="products">
+      <div class="product-listy">
+        <h2>our Products</h2>
+        <ul class="product-list">
+          <li><a href="">New Products</a></li>
+          <li><a href="">Old Products</a></li>
+          <li><a href="">T-shirts</a></li>
+          <li><a href="">pants</a></li>
+          <li><a href="">Dress</a></li>
+          <li><a href="">Shorts</a></li>
+          <li><a href="#">Shirts</a></li>
+          <li><a href="register.html">Register</a></li>
+        </ul>
+      </div>
+      <div class="latest-bis">
+       {{ "l4.jpg" | asset_url | img_tag: "image"  }}
+        <div class="offer">
+          <p>40%</p>
+          <small>Top Offer</small>
+        </div>
+      </div>  
+      <div class="tags">
+        <h4 class="tag_head">Tags Widget</h4>
+        <ul class="tags_links">
+          <li><a href="#">Kitesurf</a></li>
+          <li><a href="#">Super</a></li>
+          <li><a href="#">Duper</a></li>
+          <li><a href="#">Theme</a></li>
+          <li><a href="#">Men</a></li>
+          <li><a href="#">Women</a></li>
+          <li><a href="#">Equipment</a></li>
+          <li><a href="#">Best</a></li>
+          <li><a href="#">Accessories</a></li>
+          <li><a href="#">Men</a></li>
+          <li><a href="#">Apparel</a></li>
+          <li><a href="#">Super</a></li>
+          <li><a href="#">Duper</a></li>
+          <li><a href="#">Theme</a></li>
+          <li><a href="#">Responsive</a></li>
+          <li><a href="#">Women</a></li>
+          <li><a href="#">Equipment</a></li>
+        </ul>
+
+      </div>
+
+    </div><!-- End product -->
+    <div class="new-product">
+     {% paginate collection.products by 12 %}
+     <header role="banner">
+      <!-- <h1 class="mycustom">{{ collection.title }}</h1> -->
+      
+
+      {% if collection.all_tags.size > 0 %}
       <ul>
         {% for tag in collection.all_tags %}
-          {% if current_tags contains tag %}
-            <li class="active">
-              {{ tag | link_to_remove_tag: tag }}
-            </li>
-          {% else %}
-            <li>
-              {{ tag | link_to_tag: tag }}
-            </li>
-          {% endif %}
+        {% if current_tags contains tag %}
+        <li class="active">
+          {{ tag | link_to_remove_tag: tag }}
+        </li>
+        {% else %}
+        <li>
+          {{ tag | link_to_tag: tag }}
+        </li>
+        {% endif %}
         {% endfor %}
       </ul>
-    {% endif %}
-  </header>
+      {% endif %}
+    </header>
 
-  <div>
-    {% for product in collection.products %}
-      <div>
+    <div>
+      <div class="row">
+        <div class="new-product-top">
+          <ul class="product-top-list">
+            <li><a href="index.html">Home</a>&nbsp;<span>&gt;</span></li>
+            <li><span class="act">{{ collection.title }}</span>&nbsp;</li>
+          </ul>
+          <p class="back"><a href="index.html">Back to Previous</a></p>
+          <div class="clearfix"></div>
+          </div> <!-- end new-product-top -->
+      </div> <!-- End 1 row -->  
+        <div class="mens-toolbar">
+                 <div class="sort">
+                   <div class="sort-by">
+                  <label>Sort By</label>
+                  <select>
+                    <option value=""> Position</option>
+                      <option value="">Name </option>
+                      <option value="">Price</option>
+                  </select>
+                     </div>
+        </div>
+          <ul class="women_pagenation">
+            <li>Page:</li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+          </ul>
+        <div class="clearfix"></div>   
+              </div>
+      <div class="clearfix"></div>
+      
+      
+      <div class="clearfix"></div>
+      <div class="row">
+       {% for product in collection.products %}
+       <div class="simpleCart_shelfItem">
+         
+       </div>
+       <div class="col-md-4 text-center my-column">
         {% if product.featured_image != blank %}
-          <a href="{{ product.url | within: collection }}">
-            {{ product.featured_image.src | img_url: '480x480' | img_tag: product.featured_image.alt }}
-          </a>
+        <a href="{{ product.url | within: collection }}">
+          {{ product.featured_image.src | img_url: '480x480' | img_tag: product.featured_image.alt }}
+        </a>
         {% endif %}
 
-        <p>
-          <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
-        </p>
-        <p>
-          {% if product.compare_at_price > product.price %}
+        <div class="product_container" >
+          <div class="cart-left">
+             <p class="title">
+                <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+              </p>
+          </div>
+          <div class="pricey">
+            <p class="item_price">
+              {% if product.compare_at_price > product.price %}
 
-            {% if product.price_varies %}
+              {% if product.price_varies %}
               {%- assign sale_price = product.price | money -%}
               {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
-            {% else %}
+              {% else %}
               {{ 'products.product.on_sale' | t }}
               {{ product.price | money }}
-            {% endif %}
+              {% endif %}
 
-          {% else %}
+              {% else %}
 
-            {% if product.price_varies %}
+              {% if product.price_varies %}
               {%- assign price = product.price | money -%}
               {{ 'products.product.from_text_html' | t: price: price }}
-            {% else %}
+              {% else %}
               {{ product.price | money }}
-            {% endif %}
+              {% endif %}
 
-          {% endif %}
+              {% endif %}
 
-          {% if product.compare_at_price > product.price %}
-            <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
-            <s>{{ product.compare_at_price | money }}</s>
-          {% endif %}
+              {% if product.compare_at_price > product.price %}
+              <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+              <s>{{ product.compare_at_price | money }}</s>
+              {% endif %}
 
-          {% unless product.available %}
-            {{ 'products.product.sold_out' | t }}
-          {% endunless %}
-        </p>
+              {% unless product.available %}
+              {{ 'products.product.sold_out' | t }}
+              {% endunless %}
+            </p>
+          </div>
+        </div><!-- End div product_container -->
+        <div class="clearfix"></div>
+        <div class="cbp-vm-details">
+                Silver beet shallot wakame tomatillo salsify mung bean beetroot groundnut.
+        </div><!-- End more detail -->
+        <a class="cbp-vm-icon cbp-vm-add item_add" href="#">Add to cart</a>
       </div>
 
-    {% else %}
-      {% if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0 %}
-        {% for i in (1..8) %}
-          <a href="#">
-            {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
-            {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
-          </a>
-
-          <p>
-            <a href="#">{{ 'homepage.onboarding.product_title' | t }}</a>
-          </p>
-
-          <p>
-            {{ 1999 | money }}
-          </p>
-        {% endfor %}
       {% else %}
-        <p>{{ 'collections.general.no_matches' | t }}</p>
+      {% if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0 %}
+      {% for i in (1..8) %}
+      <a href="#">
+        {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+        {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
+      </a>
+
+      <p>
+        <a href="#">{{ 'homepage.onboarding.product_title' | t }}</a>
+      </p>
+
+      <p>
+        {{ 1999 | money }}
+      </p>
+      {% endfor %}
+      {% else %}
+      <p>{{ 'collections.general.no_matches' | t }}</p>
       {% endif %}
 
-    {% endfor %}
+      {% endfor %}
+
+    </div><!-- End 1 row -->
+
   </div>
 
   {% if paginate.pages > 1 %}
-    {% include 'pagination' %}
+  {% include 'pagination' %}
   {% endif %}
-{% endpaginate %}
+  {% endpaginate %}
+
+</div>
+
+</div><!-- End new-product -->
+<div class="clearfix"></div>
+</div>

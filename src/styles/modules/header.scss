@@ -89,7 +89,7 @@ ul.multi-column-dropdown h6 {
 
 .header-top-left {
     float: left;
-    margin-top: 10px;
+    margin-top: 13px;
 }
 
 .header-top-strip {
@@ -241,3 +241,18 @@ a.facebook {
     padding: 1px;
 }
 /*  End content-section-starts-here */
+
+@media screen and (max-width: 600px) {
+  body {
+    background-color: transparent;
+  }
+.header-top-left ul li {
+    display: block;
+    margin-right: 15px;
+}
+.header-right {
+    /* float: right; */
+    padding-top: 13px;
+    display: block;
+}
+}

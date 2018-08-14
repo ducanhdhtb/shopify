@@ -1,0 +1,144 @@
+h1.mycustom{
+	color:#816263;
+	text-align:center;
+}
+.new-product img {
+    display: inline-block;
+    width: 100%;
+    border: none;
+    height: 307px;
+}
+span.act {
+    background: yellow;
+    font-size: 14px;
+    padding: 3px;
+}
+.product-top-list li{
+	display: inline;
+    float: left;
+}
+p.back a {
+    font-size: 14px;
+    color: #B9B4B5;
+    float: right;
+}
+ul.product-top-list li a {
+    color: #816263;
+    font-size: 16px;
+}
+ul.product-top-list li span.act {
+    background: yellow;
+    font-size: 14px;
+    padding: 3px;
+}
+.cart-left {
+    float: left;
+    margin-right: 2.6%;
+}
+p.title {
+    color: #000;
+    font-size: 0.95em;
+    font-weight: 700;
+    margin: 0;
+}
+.pricey {
+    float: right;
+    font-weight: bold;
+    font-size: 0.95em;
+}
+p.title a{
+    color: #000;
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0;
+}
+.product_container {
+    padding: 8px;
+    /* border-top: 10px solid red; */
+   /*  border: 1px solid green; */
+    overflow: auto;
+}
+.cbp-vm-details {
+    max-width: 300px;
+    min-height: 25px;
+    margin: 0 auto;
+    color: #999;
+    font-size: 0.9em;
+}
+.cbp-vm-add {
+    color: #fff;
+    background: #816263;
+    padding: 8px 10px;
+    border-radius: 2px;
+    margin: 10px !important;
+    display: inline-block;
+    font-size: 13px;
+}
+.my-column{
+	padding-bottom:5px;
+}
+.sort-by label {
+    font-weight: normal;
+}
+.sort-by {
+    color: #828282;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+.mens-toolbar .sort {
+    float: left;
+    width: 20.5%;
+}
+ul.women_pagenation {
+    float: right;
+    padding: 0;
+    list-style: none;
+}
+ul.women_pagenation li {
+    float: left;
+    margin: 0px;
+    margin-left: 5px;
+    padding: 0px;
+    list-style: none;
+    font-size:small;
+}
+ul.women_pagenation li.active a {
+    background: #7C7C7C;
+    color: #fff;
+}
+ul.women_pagenation li a {
+    color: #000;
+    display: block;
+    padding: 4px 8px;
+    text-decoration: none;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+ul.women_pagenation li a:hover {
+    background: #816263;
+    color: #fff;
+}
+.mens-toolbar .sort {
+    float: left;
+    width: 20.5%;
+    padding-top: 5px;
+}
+.mens-toolbar {
+    margin: 23px 0;
+    font-size: 20px;
+}
+.sort-by select {
+    outline: none;
+}
+.sort-by {
+    color: #828282;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+.sort-by select {
+    outline: none;
+    border: 1px solid #828282;
+    padding-left: 7px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
