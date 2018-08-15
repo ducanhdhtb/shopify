@@ -60,18 +60,18 @@
             {% for link in linklists.main-menu.links %}            
             <li class="dropdown">
               <a href="{{ link.url }}"  class="dropdown-toggle" data-toggle="dropdown" >{{ link.title }} {% if link.levels > 0 %}<b class="caret">{% endif %}</b></a>
-              {% assign submenu = link.title | handleize %}   
-              {% if link.levels > 0 %}
+              {% if link.links != blank %}
               <ul class="dropdown-menu multi-column columns-3">
                 <div class="row">
-                  {% for childlink in linklists[submenu].links %}
+                  {% for child_link in link.links %}
                   <div class="col-sm-4">
                     <ul class="multi-column-dropdown">                     
-                      <h6><a href="{{ childlink.url }}">{{ childlink.title }}</a></h6>
-                      {% assign submenu2 = childlink.title | handleize %}
-                      {% for childlink2 in linklists[submenu2].links %}
-                         <li><a href="{{ childlink2.url }}"  class="dropdown-toggle" data-toggle="dropdown" >{{ childlink2.title }}</a></li>
-                      {% endfor%}
+                      <h6><a href="{{ child_link.url }}">{{ child_link.title }}</a></h6>
+                      {% if child_link.links != blank %}
+                        {%  for grandchild_link in child_link.links %}
+                           <li><a href="{{ grandchild_link.url }}"  class="dropdown-toggle" data-toggle="dropdown" >{{ grandchild_link.title }}</a></li>
+                        {% endfor%}
+                      {% endif %}
         
                    </ul>
                   </div>
