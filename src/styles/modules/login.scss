@@ -1,0 +1,42 @@
+.cs_login{
+	color:black;
+	margin-bottom:1%;
+}
+#CustomerLoginForm label{
+	display:block !important;
+} 
+div#CustomerLoginForm {
+    width: 46%;
+    margin:1px auto;
+}
+input#CustomerEmail {
+    width: 100%;
+    padding: 16px 18px;
+    border: 1px solid #00000047;
+}
+input#CustomerPassword{
+    width: 100%;
+    padding: 16px 18px;
+	border: 1px solid #00000047;
+}
+#CustomerLoginForm label {
+    display: block !important;
+    font-size: 15px;
+    color: grey;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+input.btn {
+    margin-top: 25px;
+    text-align: center;
+    display: block;
+	margin: 25px auto;
+}
+input.btn {
+    margin-top: 25px;
+    text-align: center;
+    display: block;
+    margin: 25px auto;
+    background: #816263;
+    color: white;
+}

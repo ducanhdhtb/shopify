@@ -1,15 +1,15 @@
-<div class="form-success hide" id="ResetSuccess">
+<div class="container">
+  <div class="form-success hide" id="ResetSuccess">
   {{ 'customer.recover_password.success' | t }}
 </div>
-
 <div id="CustomerLoginForm">
   {% form 'customer_login' %}
-    <h1>{{ 'customer.login.title' | t }}</h1>
+    <h1 class="text-center cs_login">{{ 'customer.login.title' | t }}</h1>
 
     {{ form.errors | default_errors }}
 
-    <label for="CustomerEmail" class="label-hidden">
-      {{ 'customer.login.email' | t }}
+    <label >
+      Email
     </label>
     <input type="email"
            name="customer[email]"
@@ -22,8 +22,8 @@
            autofocus>
 
     {% if form.password_needed %}
-      <label for="CustomerPassword" class="label-hidden">
-        {{ 'customer.login.password' | t }}
+      <label>
+        Password
       </label>
       <input type="password"
              name="customer[password]"
@@ -85,3 +85,5 @@
     <input type="submit" class="btn" value="{{ 'customer.login.guest_continue' | t }}">
   {% endform %}
 {% endif %}
+
+</div>

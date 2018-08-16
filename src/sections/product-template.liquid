@@ -21,8 +21,8 @@
     <div class="tags">
       <h4 class="tag_head">Tags Widget</h4>  
       <ul class="tags_links">
-        {% for tag1 in product.tags %}
-        <li><a href="#"> {{ tag1 }}</a></li>
+        {% for tag in product.tags %}
+        <li><a href="#"> {{ tag }}</a></li>
         {% endfor %}
       </ul>         
     </div>
@@ -30,28 +30,14 @@
   </div>
   <div class="new-product">
     <div class="col-md-5 zoom-grid">
-      <div class="flexslider">
-
-        <div class="flex-viewport" style="overflow: hidden; position: relative;">
-        <ul class="slides" style="width: 1000%; transition-duration: 0s; transform: translate3d(-339px, 0px, 0px);">
-           {% for image in product.images %}
-            <li data-thumb="{{ image.src | img_url: '200x200', crop: 'center' }}" class="clone" style="float: left; display: block; width: 339px;">
-              <div class="thumb-image"> <img id="img_0{{ forloop.index }}" data-imagezoom="true" class="img-responsive" alt="" src="{{ image.src | img_url: '200x200', crop: 'center' }}" /> </div>
-            </li>
-            {% endfor %} 
-        </ul>
-      </div>
-      <ol class="flex-control-nav flex-control-thumbs">
-          {% for image in product.images %}
-        <li><img id="img_0{{ forloop.index }}" data-imagezoom="true" class="img-responsive" alt="" src="{{ image.src | img_url: '200x200', crop: 'center' }}" /></li>
-        {% endfor%}
-      </ol>
-      <ul class="flex-direction-nav"><li><a class="flex-prev" href="#">Previous</a></li><li><a class="flex-next" href="#">Next</a></li></ul></div>
+      {%- if product.featured_image -%}
+        <img src="{{ product.featured_image.src | img_url: '350x350' }}" alt="">
+      {%- endif -%}
       </div>
       <div class="col-md-7 dress-info">
         <div class="dress-name">
-          <h3>{{ product.title }}</h3>
-          <span>${{ product.price }}</span>
+          <h3>{{ product.title }}</h3>        
+          <span>{{ product.price | money }}</span>
           <div class="clearfix"></div>
           <p>{{ product.description | strip_html }}</p>
           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
@@ -67,7 +53,6 @@
           <p class="right">China </p>
           <div class="clearfix"></div>
         </div>
-         {% form 'product', product, class:form_classes, novalidate: 'novalidate' %}
         {% for product_option in product.options_with_values %}
         <div class="span span4">
           <p class="left"> {{ product_option.name }}</p>
@@ -85,18 +70,46 @@
           <div class="clearfix"></div>
         </div>
         {% endfor %}
+        <!-- Variant for product -->
 
-        <select name="id" id="ProductSelect-{{ section.id }}" class="product-form__variants no-js">
-          {% for variant in product.variants %}
-            {% if variant.available %}
-              <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
-                {{ variant.title }}
-              </option>
-            {% else %}
-              <option disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
-            {% endif %}
-          {% endfor %}
-        </select>
+        <div class="span span4">
+        <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" class="form-vertical">
+          <select name="id" id="productSelect" class="product-single__variants">
+            {% for variant in product.variants %}
+              {% if variant.available %}
+                {% comment %}
+                  Note: if you use option_selection.js, your <select> tag will be overwritten, meaning what you have inside <option> will not reflect what you coded below.
+                {% endcomment %}
+                <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+              {% else %}
+                <option disabled="disabled">
+                  {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+                </option>
+              {% endif %}
+            {% endfor %}
+          </select>
+
+          <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
+          <span id="ProductPrice" class="h2" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
+            {{ current_variant.price | money }}
+          </span>
+
+          {% if product.compare_at_price_max > product.price %}
+            <span class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
+            <p id="ComparePrice">
+              {{ 'products.product.compare_at' | t }} {{ current_variant.compare_at_price | money }}
+            </p>
+          {% endif %}
+
+          <label for="Quantity" class="quantity-selector">{{ 'products.product.quantity' | t }}</label>
+          <input type="number" id="Quantity" name="quantity" value="1" min="1" class="quantity-selector">
+
+          <button type="submit" name="add" id="AddToCart" class="btn">
+            <span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span>
+          </button>
+        </form><!-- end form -->
+        </div><!--  End span span 4 -->
+
         <div class="purchase">
           <!-- <a href="#">Purchase Now</a>
           <div class="social-icons">
@@ -106,15 +119,9 @@
               <li><a class="googleplus1" href="#"></a></li>
             </ul>
           </div> -->
-          <button type="submit" name="add" id="AddToCart-{{ section.id }}" class="btn product-form__cart-submit">
-                <span id="AddToCartText-{{ section.id }}">
-                    {{ 'products.product.add_to_cart' | t }}
-                </span>
-              </button>
+  
           <div class="clearfix"></div>
         </div>
-        {% endform %}
-
       </div>
       <div class="clearfix"></div>
       <div class="reviews-tabs">
@@ -299,6 +306,8 @@
   </div>
   <!-- End Other product -->
 </div>
+{{ 'option_selection.js' | shopify_asset_url | script_tag }}
+
 {% schema %}
   {
     "name": "Sidebar",

@@ -1,51 +1,96 @@
-<h1>{{ 'customer.register.title' | t }}</h1>
-
-{% form 'create_customer' %}
-  {{ form.errors | default_errors }}
-
-  <label for="FirstName" class="label-hidden">
-    {{ 'customer.register.first_name' | t }}
-  </label>
-  <input type="text"
-    name="customer[first_name]"
-    id="FirstName"
-    placeholder="{{ 'customer.register.first_name' | t }}"
-    autofocus
-    {% if form.first_name %}value="{{ form.first_name }}"{% endif %}>
-
-  <label for="LastName" class="label-hidden">
-    {{ 'customer.register.last_name' | t }}
-  </label>
-  <input type="text"
-    name="customer[last_name]"
-    id="LastName"
-    placeholder="{{ 'customer.register.last_name' | t }}"
-    {% if form.last_name %}value="{{ form.last_name }}"{% endif %}>
-
-  <label for="Email" class="label-hidden">
-    {{ 'customer.register.email' | t }}
-  </label>
-  <input type="email"
-    name="customer[email]"
-    id="Email"
-    class="{% if form.errors contains 'email' %}input-error{% endif %}"
-    placeholder="{{ 'customer.register.email' | t }}"
-    value="{% if form.email %}{{ form.email }}{% endif %}"
-    spellcheck="false"
-    autocomplete="off"
-    autocapitalize="off">
-
-  <label for="CreatePassword" class="label-hidden">
-    {{ 'customer.register.password' | t }}
-  </label>
-  <input type="password"
-    name="customer[password]"
-    id="CreatePassword"
-    class="{% if form.errors contains 'password' %}input-error{% endif %}"
-    placeholder="{{ 'customer.register.password' | t }}">
-
-  <p>
-    <input type="submit" value="{{ 'customer.register.submit' | t }}" class="btn">
-  </p>
-  <a href="{{ shop.url }}">{{ 'customer.register.cancel' | t }}</a>
-{% endform %}
+<div class="registration-form">
+  <div class="container">
+  <div class="dreamcrub">
+           <ul class="breadcrumbs">
+                    <li class="home">
+                       <a href="index.html" title="Go to Home Page">Home</a>&nbsp;
+                       <span>&gt;</span>
+                    </li>
+                    <li class="women">
+                       Registration
+                    </li>
+                </ul>
+                <ul class="previous">
+                  <li><a href="index.html">Back to Previous Page</a></li>
+                </ul>
+                <div class="clearfix"></div>
+         </div>
+    <h2>Registration</h2>
+    <div class="registration-grids">
+      <div class="reg-form">
+        <div class="reg">
+           <p>Welcome, please enter the following details to continue.</p>
+           <p>If you have previously registered with us, <a href="#">click here</a></p>
+           {% form 'create_customer' %}
+            {{ form.errors | default_errors }}
+             <ul>
+               <li class="text-info">First Name: </li>
+               <li>
+                 <input type="text"
+                    name="customer[first_name]"
+                    id="FirstName"
+                    placeholder="{{ 'customer.register.first_name' | t }}"
+                    autofocus
+                    {% if form.first_name %}value="{{ form.first_name }}"{% endif %}>
+               </li>
+             </ul>
+             <ul>
+               <li class="text-info">Last Name: </li>
+               <li>
+                  <input type="text"
+                        name="customer[last_name]"
+                        id="LastName"
+                        placeholder="{{ 'customer.register.last_name' | t }}"
+                        {% if form.last_name %}value="{{ form.last_name }}"{% endif %}>
+               </li>
+             </ul>         
+            <ul>
+               <li class="text-info">Email: </li>
+               <li>
+                 <input type="email"
+                      name="customer[email]"
+                      id="Email"
+                      class="{% if form.errors contains 'email' %}input-error{% endif %}"
+                      placeholder="{{ 'customer.register.email' | t }}"
+                      value="{% if form.email %}{{ form.email }}{% endif %}"
+                      spellcheck="false"
+                      autocomplete="off"
+                      autocapitalize="off">
+               </li>
+             </ul>
+             <ul>
+               <li class="text-info">Password: </li>
+               <li>
+                 <input type="password"
+                        name="customer[password]"
+                        id="CreatePassword"
+                        class="{% if form.errors contains 'password' %}input-error{% endif %}"
+                        placeholder="{{ 'customer.register.password' | t }}">
+               </li>
+             </ul>
+             <ul>
+               <li class="text-info">Re-enter Password:</li>
+               <li><input type="password" value=""></li>
+             </ul>
+             <ul>
+               <li class="text-info">Mobile Number:</li>
+               <li><input type="text" value=""></li>
+             </ul>            
+              <input type="submit" value="{{ 'customer.register.submit' | t }}" class="btn">
+             <p class="click">By clicking this button, you are agree to my  <a href="#">Policy Terms and Conditions.</a></p> 
+           {% endform %}
+         </div>
+      </div>
+      <div class="reg-right">
+         <h3>Completely Free Account</h3>
+         <div class="strip"></div>
+         <p>Pellentesque neque leo, dictum sit amet accumsan non, dignissim ac mauris. Mauris rhoncus, lectus tincidunt tempus aliquam, odio 
+         libero tincidunt metus, sed euismod elit enim ut mi. Nulla porttitor et dolor sed condimentum. Praesent porttitor lorem dui, in pulvinar enim rhoncus vitae. Curabitur tincidunt, turpis ac lobortis hendrerit, ex elit vestibulum est, at faucibus erat ligula non neque.</p>
+         <h3 class="lorem">Lorem ipsum dolor.</h3>
+         <div class="strip"></div>
+         <p>Tincidunt metus, sed euismod elit enim ut mi. Nulla porttitor et dolor sed condimentum. Praesent porttitor lorem dui, in pulvinar enim rhoncus vitae. Curabitur tincidunt, turpis ac lobortis hendrerit, ex elit vestibulum est, at faucibus erat ligula non neque.</p>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>

@@ -82,40 +82,33 @@
           </div> <!-- end new-product-top -->
       </div> <!-- End 1 row -->  
         <div class="mens-toolbar">
-                 <div class="sort">
-                   <div class="sort-by">
-                  <label>Sort By</label>
-                  <select>
-                    <option value=""> Position</option>
-                      <option value="">Name </option>
-                      <option value="">Price</option>
-                  </select>
-                     </div>
-        </div>
+          <div class="sort">
+            <div class="sort-by">
+              <label>Sort By</label>
+              <select>
+                <option value=""> Position</option>
+                  <option value="">Name </option>
+                  <option value="">Price</option>
+              </select>
+            </div>
+        </div><!-- End mens-toolbar --> 
           <ul class="women_pagenation">
             <li>Page:</li>
             <li class="active"><a href="#">1</a></li>
             <li><a href="#">2</a></li>
           </ul>
         <div class="clearfix"></div>   
-              </div>
-      <div class="clearfix"></div>
-      
-      
+    </div>
       <div class="clearfix"></div>
       <div class="row">
        {% for product in collection.products %}
-       <div class="simpleCart_shelfItem">
-         
-       </div>
        <div class="col-md-4 text-center my-column">
         {% if product.featured_image != blank %}
         <a href="{{ product.url | within: collection }}">
           {{ product.featured_image.src | img_url: '480x480' | img_tag: product.featured_image.alt }}
         </a>
         {% endif %}
-
-        <div class="product_container" >
+        <div class="product_container">
           <div class="cart-left">
              <p class="title">
                 <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
@@ -159,7 +152,7 @@
         <div class="cbp-vm-details">
                 Silver beet shallot wakame tomatillo salsify mung bean beetroot groundnut.
         </div><!-- End more detail -->
-        <a class="cbp-vm-icon cbp-vm-add item_add" href="#">Add to cart</a>
+      <a class="cbp-vm-icon cbp-vm-add item_add" href="#">Add to cart</a>
       </div>
 
       {% else %}
