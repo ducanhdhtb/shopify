@@ -1,0 +1,69 @@
+/* My scss menu */
+
+.navbar-default{
+    background-color: #f8f8f8;
+    border-color: #e7e7e7;
+    padding-top: 25px;
+    background: white;
+    border: none;
+    .navbar-header {
+        a {
+        color:#816263;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        text-transform: uppercase;
+        font-size: 16px;
+        }
+    }
+    .navbar-nav > li > a:hover{
+    border:1px solid #816263;
+    }
+    .navbar-nav {
+        float: right;
+        margin: 0;
+    }
+    .dropdown-menu.columns-3 {
+        min-width: 550px;
+        padding: 15px 20px;
+    }
+    .multi-column-dropdown li a {
+        display: block;
+        clear: both;
+        line-height: 1.428571429;
+        color: #000;
+        white-space: normal;
+        font-weight: 300;
+    }
+    .multi-column-dropdown li {
+        list-style-type: none;
+        margin: 5px 0;
+    }
+    .dropdown-toggle{
+        color: #555;
+        background-color: #fff;
+    }
+    
+    .navbar-nav > li > a {
+    color: black;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-transform: uppercase;
+    font-size: 13px;
+    }
+    .multi-column-dropdown li a {
+        display: block;
+        clear: both;
+        line-height: 1.428571429;
+        color: #777;
+        white-space: normal;
+        font-weight: 300;
+        font-size: 13px;
+        /* border: 1px solid black; */
+        padding: 1px;
+    }
+    .navbar-header {
+    float: left;
+    width: 35%;
+    }
+}
+/* End My scss-menu */

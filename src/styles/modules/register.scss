@@ -1,66 +1,76 @@
 ul.breadcrumbs {
-    padding: 0;
-    list-style: none;
-    float: left;
-}
-ul.breadcrumbs li {
+  padding: 0;
+  list-style: none;
+  float: left;
+  li {
     display: inline-block;
     color: #000;
+  }
 }
+
 li.home a {
-    color: #816263;
-    font-size: 16px;
+  color: #816263;
+  font-size: 16px;
 }
-ul.breadcrumbs li.women {
+
+ul {
+  &.breadcrumbs li.women {
     background: yellow;
     font-size: 14px;
     padding: 3px;
-}
-ul.previous {
+  }
+  &.previous {
     padding: 0;
     list-style: none;
     float: right;
     margin-top: 3px;
+  }
 }
+
 .registration-form h2 {
-    font-weight: 600;
-    text-transform: uppercase;
-    color: #000;
-    font-size: 20px;
-    padding-bottom: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #000;
+  font-size: 20px;
+  padding-bottom: 18px;
 }
+
 .reg-form {
-    float: left;
-    width: 50%;
+  float: left;
+  width: 50%;
 }
-.reg p {
+
+.reg {
+  p {
     color: #CAC9C9;
     margin: 0px 0 0 0;
     font-size: 14px;
     line-height: 1.8em;
-}
-.reg p:nth-child(2) {
-    margin: 0;
-}
-.reg form {
+    &:nth-child(2) {
+      margin: 0;
+    }
+  }
+  form {
     margin-top: 32px;
-}
-.reg ul {
+  }
+  ul {
     padding: 0;
     margin: 0 0 22px 0;
-}
-.reg ul li.text-info {
-    width: 38%;
-    color: #816263;
-    font-size: 16px;
-    text-transform: uppercase;
-    margin: 0 0 0px 0;
-    font-weight: bold;
-}
-.reg ul li:nth-child(2) {
-    margin-left: 3%;
-}
-.reg form input[type=submit] {
+    li {
+      &.text-info {
+        width: 38%;
+        color: #816263;
+        font-size: 16px;
+        text-transform: uppercase;
+        margin: 0 0 0px 0;
+        font-weight: bold;
+      }
+      &:nth-child(2) {
+        margin-left: 3%;
+      }
+    }
+  }
+  form input[type=submit] {
     border: none;
     color: #ffffff;
     padding: 9px 35px;
@@ -72,74 +82,81 @@ ul.previous {
     border-top: none;
     border-left: none;
     border-right: none;
-}
-.reg p {
+  }
+  p {
     color: #CAC9C9;
     margin: 0px 0 0 0;
     font-size: 14px;
     line-height: 1.8em;
+  }
 }
+
 .reg-right {
-    float: right;
-    width: 47%;
-}
-.reg-right p {
+  float: right;
+  width: 47%;
+  p {
     color: #CAC9C9;
     margin: 0 0 30px 0;
     font-size: 14px;
     line-height: 1.8em;
+  }
+}
 
-}
-.reg form input[type="text"], .reg form input[type="password"] {
-    width: 100%;
-    padding: 8px;
-    font-size: 14px;
-    font-weight: 400;
-    border: 1px solid #e6e6e6;
-    outline: none;
-    color: #000;
-}
-.reg ul li.text-info {
+.reg {
+  form input {
+    &[type="text"], &[type="password"] {
+      width: 100%;
+      padding: 8px;
+      font-size: 14px;
+      font-weight: 400;
+      border: 1px solid #e6e6e6;
+      outline: none;
+      color: #000;
+    }
+  }
+  ul li.text-info {
     width: 38%;
     color: #816263;
     font-size: 16px;
     text-transform: uppercase;
     margin: 0 0 0px 0;
     font-weight: bold;
-}
-.reg ul li.text-info {
     width: 38%;
     color: #816263;
     font-size: 16px;
     text-transform: uppercase;
     margin: 0 0 0px 0;
     font-weight: bold;
-}
-.reg ul li.text-info {
     width: 38%;
     color: #816263;
     font-size: 16px;
     text-transform: uppercase;
     margin: 0 0 0px 0;
     font-weight: bold;
+  }
+  form input {
+    &[type="text"], &[type="password"] {
+      width: 100%;
+      padding: 8px;
+      font-size: 14px;
+      font-weight: 400;
+      border: 1px solid #e6e6e6;
+      outline: none;
+      color: #000;
+    }
+  }
 }
-.reg form input[type="text"], .reg form input[type="password"] {
-    width: 100%;
-    padding: 8px;
-    font-size: 14px;
-    font-weight: 400;
-    border: 1px solid #e6e6e6;
-    outline: none;
-    color: #000;
+
+ul li {
+  list-style-type: none;
 }
-ul li{
-	list-style-type:none;
-}
-.reg ul li {
+
+.reg {
+  ul li {
     display: inline-block;
     width: 58%;
-}
-.reg form input[type="email"], .reg form input[type="email"] {
+  }
+  form input[type="email"] {
     width: 100%;
     padding: 8px;
     font-size: 14px;
@@ -147,4 +164,5 @@ ul li{
     border: 1px solid #e6e6e6;
     outline: none;
     color: #000;
+  }
 }

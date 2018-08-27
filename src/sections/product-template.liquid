@@ -31,9 +31,18 @@
   <div class="new-product">
     <div class="col-md-5 zoom-grid">
       {%- if product.featured_image -%}
-        <img src="{{ product.featured_image.src | img_url: '350x350' }}" alt="">
+        <img id="zoom_01" src="{{ product.featured_image.src | img_url: '350x350' }}" alt="" data-zoom-image="{{ product.featured_image.src | img_url: '350x350' }}" >
       {%- endif -%}
       </div>
+      <script>
+        $('#zoom_01').elevateZoom({
+        zoomType: "inner",
+        cursor: "crosshair",
+        zoomWindowFadeIn: 500,
+        zoomWindowFadeOut: 750
+       }); 
+    </script>
+<span>1</span>
       <div class="col-md-7 dress-info">
         <div class="dress-name">
           <h3>{{ product.title }}</h3>        

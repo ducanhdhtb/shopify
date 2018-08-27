@@ -1,0 +1,48 @@
+
+/* My scss  online-strip defined */
+.online-strip{
+    border-top: 1px solid #C8C8C8;
+    border-bottom: 1px solid #C8C8C8;
+    padding: 20px 0;
+    text-align: center;
+    margin: 40px 0 30px;
+    .follow-us{
+        h3{
+            margin-top: 0.4em;
+            color:green;
+        }
+    }
+    a.twitter {
+    width: 25px;
+    height: 25px;
+    background: url(follow.png) no-repeat 0px 0px;
+    display: inline-block;
+    margin: 0 1em;
+    vertical-align: text-bottom;
+    }
+    a.facebook {
+    width: 25px;
+    height: 25px;
+    background: url(follow.png) no-repeat -25px 0px;
+    display: inline-block;
+    vertical-align: text-bottom;
+    }
+    .shipping{
+        float:left;
+    }
+    .shipping-text {
+        float: left;
+    }
+    .shipping {
+        float: left;
+        margin-right: 3%;
+        margin-left: 20%;
+        width: 13%;
+    }
+    .shipping-grid {
+        border-left: 1px solid #C8C8C8;
+        border-right: 1px solid #C8C8C8;
+    }
+
+}
+/* End My scss  online-strip defined */

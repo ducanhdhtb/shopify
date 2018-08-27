@@ -36,6 +36,14 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="{{ 'imagezoom.js' | asset_url }}" ></script>
+  <script src="{{ 'jquery.elevatezoom.js' | asset_url }}" ></script>
+
+  <script>
+  $("#zoom").elevateZoom({
+            gallery : "gallery_09",
+            galleryActiveClass: "active"
+            }); 
+  </script>
 
 
   {{ 'theme.scss.css' | asset_url | stylesheet_tag }}   
